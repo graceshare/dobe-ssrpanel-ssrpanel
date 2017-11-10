@@ -1,4 +1,4 @@
-FROM php:7.0.6-fpm
+FROM php:7.1-fpm
 
 # Install env
 COPY ./pkg/* /tmp/
@@ -45,6 +45,8 @@ RUN docker-php-ext-configure gd \
         --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install \
         gd \
+        fileinfo \
+        gd2 \
         zip \
         intl \
         pcntl \
@@ -83,4 +85,4 @@ WORKDIR /opt
 
 VOLUME ["/opt"]
 
-EXPOSE 9000 9001 8000
+EXPOSE 9000
