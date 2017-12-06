@@ -11,7 +11,7 @@ services:
         volumes:
             - ./conf/vhost:/etc/nginx/conf.d
             - ./volumes/logs/nginx:/var/log/nginx
-            - /app/data:/opt
+            - /app/data:/srv
         env_file: .env
     php7:
         image: dockette/php:7.1-fpm
