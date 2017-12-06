@@ -9,9 +9,9 @@ services:
         depends_on:
             - php7
         volumes:
-            - ./conf/sites-enabled:/etc/nginx/conf.d
+            - ./conf/vhost:/etc/nginx/conf.d
             - ./volumes/logs/nginx:/var/log/nginx
-            - ~/work:/opt
+            - /app/data:/opt
         env_file: .env
     php7:
         build: images/php7.1
@@ -19,9 +19,9 @@ services:
         restart: always
         network_mode: host
         ports:
-            - 9007:9000
+            - 9000:9000
         volumes:
-            - ~/work:/opt
+            - /app/data:/opt
             - ./volumes/logs/php:/var/log
         working_dir: /opt
         env_file: .env
@@ -34,41 +34,13 @@ services:
             - ./volumes/data/mysql:/var/lib/mysql
         env_file: .env
 
-# mongo:
-#   build: images/mongo
-#   ports:
-#     - 27017:27017
+    ssdb:
+        build: images/ssdb
+        ports:
+            - 16379:16379
+        env_file: .env
 
-# memcache:
-#   build: images/memcache
-#   ports:
-#     - 11211:11211
-
-# ssdb:
-#   build: images/ssdb
-#   ports:
-#     - 16379:16379
-#   env_file: .env
-
-# redis:
-#   build: images/redis
-#   ports:
-#     - 6379:6379
-
-# solr:
-#   build: images/solr
-#   ports:
-#     - 8983:8983
-
-# elasticsearch:
-#   build: images/elasticsearch
-#   ports:
-#     - 9200:9200
-#     - 9300:9300
-
-# zookeeper:
-#   build: images/zookeeper
-#   ports:
-#     - 2181:2181
-#     - 2888:2888
-#     - 3888:3888
+    redis:
+        build: images/redis
+        ports:
+            - 6379:6379

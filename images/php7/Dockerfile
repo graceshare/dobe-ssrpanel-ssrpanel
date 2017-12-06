@@ -90,7 +90,7 @@ RUN set -xe; \
 	\
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $fetchDeps
 
-COPY docker-php-source /usr/local/bin/
+COPY docker-php-source /usr/local/bin/w
 
 RUN set -xe \
 	&& buildDeps=" \
@@ -123,13 +123,14 @@ RUN set -xe \
 		--disable-cgi \
 		\
 # --enable-ftp is included here because ftp_ssl_connect() needs ftp to be compiled statically (see https://github.com/docker-library/php/issues/236)
-		--enable-ftp \
+		#--enable-ftp \
 # --enable-mbstring is included here because otherwise there's no way to get pecl to use it properly (see https://github.com/docker-library/php/issues/195)
 		--enable-mbstring \
 # --enable-mysqlnd is included here because it's harder to compile after the fact than extensions are (since it's a plugin for several extensions, not an extension in itself)
 		--enable-mysqlnd \
 		\
 		--with-curl \
+		--with-pdo-mysql=mysqlnd \
 		--with-libedit \
 		--with-openssl \
 		--with-zlib \
