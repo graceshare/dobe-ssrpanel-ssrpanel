@@ -14,16 +14,16 @@ services:
             - /app/data:/opt
         env_file: .env
     php7:
-        build: images/php7
+        image: dockette/php:7.1-fpm
         container_name: php7
         restart: always
         network_mode: host
         ports:
             - 9000:9000
         volumes:
-            - /app/data:/opt
+            - /app/data:/srv
             - ./volumes/logs/php:/var/log
-        working_dir: /opt
+        working_dir: /srv
         env_file: .env
 
     mysql:
