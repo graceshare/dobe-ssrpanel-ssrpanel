@@ -14,7 +14,7 @@ services:
             - /app/data:/opt
         env_file: .env
     php7:
-        build: images/php7.1
+        build: images/php7
         container_name: php7
         restart: always
         network_mode: host
@@ -35,10 +35,11 @@ services:
         env_file: .env
 
     ssdb:
-        build: images/ssdb
+        build: images/felixsanz/ssdb
+        volumes:
+            - ./volumes/data/ssdb:/data
         ports:
-            - 16379:16379
-        env_file: .env
+            - "16379:16379"
 
     redis:
         build: images/redis
