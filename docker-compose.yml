@@ -35,7 +35,7 @@ services:
         env_file: .env
 
     ssdb:
-        build: images/felixsanz/ssdb
+        build: images/ssdb
         volumes:
             - ./volumes/data/ssdb:/data
         ports:
