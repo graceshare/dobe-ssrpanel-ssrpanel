@@ -17,7 +17,7 @@ RUN git clone --depth 1 https://github.com/ideawu/ssdb.git /usr/src/ssdb && \
 
 RUN apk del .build-deps
 
-COPY ./ssdb.conf /usr/local/ssdb/ssdb.conf
+#COPY ./ssdb.conf /usr/local/ssdb/ssdb.conf
 
 EXPOSE 16379
 
