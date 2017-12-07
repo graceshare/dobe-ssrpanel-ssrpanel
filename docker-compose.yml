@@ -45,3 +45,7 @@ services:
         build: images/redis
         ports:
             - 6379:6379
+    idea:
+        image: masterroot24/intellij_idea_licenseserver
+        ports:
+            - 1017:1017
