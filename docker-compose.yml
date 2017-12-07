@@ -46,6 +46,6 @@ services:
         ports:
             - 6379:6379
     idea:
-        image: masterroot24/intellij_idea_licenseserver
+        image: dominate/idea-license-server
         ports:
             - 1017:1017
